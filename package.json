@@ -1,0 +1,22 @@
+{
+  "name": "dysala-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+
+  "scripts": {
+    "dev": "nodemon ./src/app.js"
+  },
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

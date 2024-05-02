@@ -1,0 +1,53 @@
+<!-- usuario.ejs -->
+
+<!-- Código HTML aquí -->
+
+<table id="tablaUsuarios">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <!-- Agrega más columnas según tus datos -->
+      </tr>
+    </thead>
+    <tbody>
+        <% usuarios.forEach(usuario => { %>
+            <tr>
+              <td><%= usuario.id_usuario %></td>
+              <td><%= usuario.nombre %></td>
+              <td><%= usuario.apellido %></td>
+              <!-- Agregar más columnas según tus datos -->
+            </tr>
+        <% }); %>
+    </tbody>
+  </table>
+  
+  <script>
+  // Hacer una solicitud AJAX para obtener los datos de los usuarios
+  fetch('/usuarios')
+    .then(response => response.json())
+    .then(data => {
+      // Obtener el elemento de la tabla
+      const tablaUsuarios = document.getElementById('tablaUsuarios');
+      const tbody = tablaUsuarios.querySelector('tbody');
+  
+      // Recorrer los datos y agregar filas a la tabla
+      data.forEach(usuario => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+          <td>${usuario.id_usuario}</td>
+          <td>${usuario.nombre}</td>
+          <td>${usuario.apellido}</td>
+          <!-- Agrega más columnas según tus datos -->
+        `;
+        tbody.appendChild(fila);
+      });
+    })
+    .catch(error => {
+      console.error('Error al obtener datos de usuarios:', error);
+    });
+  </script>
+  
+  <!-- Código HTML adicional aquí -->
+  
