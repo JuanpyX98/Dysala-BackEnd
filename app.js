@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const usuariosRoutes = require('./src/routes/usuarios');
+const diasRoutes = require('./src/routes/dias');
 
 // Inicialización
 const app = express();
@@ -27,7 +28,7 @@ app.use(express.json());
 
 //Routes
 app.use('/', usuariosRoutes);
-
+app.use('/', diasRoutes);
 
 
 //Public files

@@ -8,7 +8,7 @@ pool.connect();
 
 
 // Ruta para obtener todos los usuarios
-router.get('/', usuariosController.obtenerUsuarios);
+router.get('/user', usuariosController.obtenerUsuarios);
 
 router.post('/userBuscar', usuariosController.buscarUsuario)
 

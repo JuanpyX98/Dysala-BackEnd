@@ -7,23 +7,18 @@ class UsuariosController {
 
     async obtenerUsuarios(req, res) {
         try {
-            await pool.connect();
-            const result = await pool.query('select * from usuario');
-            res.json(result.rows).status(200);
+            const users = await userService.getAllUsers();
+            res.status(200).json(users);
         } catch (error) {
+            console.error('Error al obtener usuarios:', error);
             res.status(500).json({ message: 'Error al obtener usuarios de la base de datos' });
         }
     }
 
     async agregarUsuarios(req, res) {
         try {
-            
             const { nombre, apellido } = req.body;
-            const newUser = await pool.query(
-                'INSERT INTO usuario (nombre, apellido) VALUES ($1, $2) RETURNING *', 
-                [nombre, apellido]
-            );
-            // Establece el estado antes de enviar la respuesta.
+            const newUser = await userService.addUsers(nombre, apellido);
             res.status(200).json(newUser.rows);
         } catch (error) {
             console.error('Error al agregar usuario:', error);
@@ -32,13 +27,14 @@ class UsuariosController {
     }
     
     async editarUsuarios(req, res) {
-        const client = await pool.connect(); // Obtén una conexión del pool
+        const client = await pool.connect();
         try {
-
             const { nombre, apellido } = req.body;
             const { userId } = req.params;
-            const result = await client.query('UPDATE usuario SET nombre = $1, apellido = $2 WHERE id_usuario = $3', [nombre, apellido, userId]);
-            res.status(200).json(result.rows); 
+            const parsedUserId = parseInt(userId);
+
+            const newUser = await userService.editUsers(nombre, apellido, parsedUserId);
+            res.status(200).json(newUser.rows);
             
         } catch (error) {
             console.error('Error al editar usuario:', error);
@@ -50,10 +46,11 @@ class UsuariosController {
     
     async buscarUsuario(req, res) {
         try {
-            // Usar placeholders para evitar inyecciones SQL
-            const id_usuario = req.body['id_usuario']; // Asumiendo que el ID viene del cuerpo de la solicitud
-            const resultado = await pool.query('SELECT * FROM usuario WHERE id_usuario = $1', [id_usuario]);
-            res.status(200).json(resultado.rows); // Usar json en lugar de send para un formato consistente
+            
+            const userId = req.body['id_usuario']; 
+            const parsedUserId = parseInt(userId);
+            const newUser = await userService.lookUsers(parsedUserId);
+            res.status(200).json(newUser.rows);
 
         } catch (error) {
             console.error('Error al obtener usuario:', error); // Buenas prácticas: loguear el error en el servidor
@@ -64,10 +61,9 @@ class UsuariosController {
     async eliminarUsuarios(req, res) {
         try {
             const userId = req.params.userId;
-            // Usar el formato correcto de placeholders y pasar los valores como array.
-            const result = await pool.query(`DELETE FROM usuario WHERE id_usuario = $1`, [userId]);
-            // Asumiendo que deseas devolver algo significativo, como el número de filas afectadas.
-            res.status(200).json({ rowsAffected: result.rowCount });
+            const parsedUserId = parseInt(userId);
+            const newUser = await userService.deleteUsers(parsedUserId);
+            res.status(200).json(newUser.rows);
         } catch (error) {
             console.error('Error al eliminar usuario:', error);
             res.status(500).json({ error: 'Error al eliminar usuario' });
