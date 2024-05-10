@@ -1,4 +1,3 @@
-// Dysala-BackEnd/controllers/usuariosController.js
 
 const diaService = require('../services/dias');
 const pool = require('../../database')
@@ -33,7 +32,7 @@ class DiasController {
             const { diaId } = req.params;
             const parsedDiaId = parseInt(diaId);
 
-            const newDia = await userService.editDias(nombre, parsedDiaId);
+            const newDia = await diaService.editDias(nombre, parsedDiaId);
             res.status(200).json(newDia.rows);
             
         } catch (error) {

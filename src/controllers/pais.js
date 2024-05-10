@@ -1,75 +1,75 @@
 // Dysala-BackEnd/controllers/usuariosController.js
 
-const diaService = require('../services/dias');
+const paisService = require('../services/pais');
 const pool = require('../../database')
 
-class DiasController {
+class PaisController {
 
-    async obtenerDias(req, res) {
+    async obtenerPais(req, res) {
         try {
-            const dias = await diaService.getAllDias();
-            res.status(200).json(dias);
+            const pais = await paisService.getAllPais();
+            res.status(200).json(pais);
         } catch (error) {
-            console.error('Error al obtener dias:', error);
-            res.status(500).json({ message: 'Error al obtener dias de la base de datos' });
+            console.error('Error al obtener pais:', error);
+            res.status(500).json({ message: 'Error al obtener pais de la base de datos' });
         }
     }
 
-    async agregarDias(req, res) {
+    async agregarPais(req, res) {
         try {
             const { nombre } = req.body;
-            const newDia = await diaService.addDias(nombre);
+            const newDia = await paisService.addPais(nombre);
             res.status(200).json(newDia.rows);
         } catch (error) {
-            console.error('Error al agregar dia:', error);
-            res.status(500).json({ message: 'Error al agregar dia a la base de datos', error: error.message });
+            console.error('Error al agregar pais:', error);
+            res.status(500).json({ message: 'Error al agregar pais a la base de datos', error: error.message });
         }
     }
     
-    async editarDias(req, res) {
+    async editarPais(req, res) {
         const client = await pool.connect();
         try {
             const { nombre } = req.body;
-            const { diaId } = req.params;
-            const parsedDiaId = parseInt(diaId);
+            const { paisId } = req.params;
+            const parsedPaisId = parseInt(paisId);
 
-            const newDia = await userService.editDias(nombre, parsedDiaId);
+            const newDia = await paisService.editPais(nombre, parsedPaisId);
             res.status(200).json(newDia.rows);
             
         } catch (error) {
-            console.error('Error al editar dia:', error);
-            res.status(500).json({ message: 'Error al editar dia en la base de datos' });
+            console.error('Error al editar pais:', error);
+            res.status(500).json({ message: 'Error al editar pais en la base de datos' });
         } finally {
             client.release(); // Libera la conexión del pool
         }
     }
     
-    async buscarDia(req, res) {
+    async buscarPais(req, res) {
         try {
             
-            const diaId = req.body['id_dia']; 
-            const parsedDiaId = parseInt(diaId);
-            const newUser = await diaService.lookDias(parsedDiaId);
+            const paisId = req.body['id_pais']; 
+            const parsedPaisId = parseInt(paisId);
+            const newUser = await paisService.lookPais(parsedPaisId);
             res.status(200).json(newUser.rows);
 
         } catch (error) {
-            console.error('Error al obtener dia:', error); // Buenas prácticas: loguear el error en el servidor
-            res.status(500).json({ message: 'Error al obtener dia de la base de datos' });
+            console.error('Error al obtener pais:', error); // Buenas prácticas: loguear el error en el servidor
+            res.status(500).json({ message: 'Error al obtener pais de la base de datos' });
         }
     }
     
-    async eliminarDias(req, res) {
+    async eliminarPais(req, res) {
         try {
-            const diaId = req.params.diaId;
-            const parsedDiaId = parseInt(diaId);
-            const newUser = await diaService.deleteDias(parsedDiaId);
+            const paisId = req.params.paisId;
+            const parsedPaisId = parseInt(paisId);
+            const newUser = await paisService.deletePais(parsedPaisId);
             res.status(200).json(newUser.rows);
         } catch (error) {
-            console.error('Error al eliminar dia:', error);
-            res.status(500).json({ error: 'Error al eliminar dia' });
+            console.error('Error al eliminar pais:', error);
+            res.status(500).json({ error: 'Error al eliminar pais' });
         }
     }
     
 }
 
-module.exports = DiasController;
+module.exports = PaisController;

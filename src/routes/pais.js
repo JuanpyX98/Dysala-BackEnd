@@ -8,14 +8,14 @@ pool.connect();
 
 
 // Ruta para obtener todos los usuarios
-router.get('/pais', paisController.obtenerDias);
+router.get('/pais', paisController.obtenerPais);
 
-router.post('/paisBuscar', paisController.buscarDia)
+router.post('/paisBuscar', paisController.buscarPais)
 
-router.post('/paisAgregar', paisController.agregarDias);
+router.post('/paisAgregar', paisController.agregarPais);
 
-router.put('/paisEditar/:paisId', paisController.editarDias);
+router.put('/paisEditar/:paisId', paisController.editarPais);
 
-router.delete('/paisEliminar/:paisId', paisController.eliminarDias);
+router.delete('/paisEliminar/:paisId', paisController.eliminarPais);
 
 module.exports = router;

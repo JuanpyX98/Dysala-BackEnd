@@ -1,7 +1,12 @@
 const express = require("express");
 const path = require("path");
+
 const usuariosRoutes = require('./src/routes/usuarios');
 const diasRoutes = require('./src/routes/dias');
+const paisRoutes = require('./src/routes/pais');
+const estadosRoutes = require('./src/routes/estados');
+const categoriasRoutes = require('./src/routes/categorias');
+const est_retiroRoutes = require('./src/routes/estados_retiros');
 
 // Inicialización
 const app = express();
@@ -29,6 +34,11 @@ app.use(express.json());
 //Routes
 app.use('/', usuariosRoutes);
 app.use('/', diasRoutes);
+app.use('/', paisRoutes);
+app.use('/', estadosRoutes);
+app.use('/', categoriasRoutes);
+app.use('/', est_retiroRoutes);
+
 
 
 //Public files

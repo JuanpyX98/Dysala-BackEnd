@@ -20,7 +20,7 @@ exports.addDias  = async (nombre) => {
 
 exports.editDias = async (nombre, userId) => {
   try {
-    const user = await pool.query('UPDATE dia SET nombre = $1 WHERE id_usuario = $2', [nombre, userId]);
+    const user = await pool.query('UPDATE dia SET nombre = $1 WHERE id_dia = $2', [nombre, userId]);
     return user;
   } catch (error) {
     throw error;
