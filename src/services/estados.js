@@ -18,27 +18,27 @@ exports.addEstados  = async (nombre) => {
   }
 };
 
-exports.editEstados  = async (nombre, userId) => {
+exports.editEstados  = async (nombre, estadoId) => {
   try {
-    const user = await pool.query('UPDATE estado SET nombre = $1 WHERE id_estado = $2', [nombre, userId]);
+    const user = await pool.query('UPDATE estado SET nombre = $1 WHERE id_estado = $2', [nombre, estadoId]);
     return user;
   } catch (error) {
     throw error;
   }
 };
 
-exports.deleteEstados  = async (userId) => {
+exports.deleteEstados  = async (estadoId) => {
   try {
-    const user = await pool.query(`DELETE FROM estado WHERE id_estado = $1`, [userId]);
+    const user = await pool.query(`DELETE FROM estado WHERE id_estado = $1`, [estadoId]);
     return user;
   } catch (error) {
     throw error;
   }
 };
 
-exports.lookEstados  = async (userId) => {
+exports.lookEstados  = async (estadoId) => {
   try {
-    const user = await pool.query('SELECT * FROM estado WHERE id_estado= $1', [userId]);
+    const user = await pool.query('SELECT * FROM estado WHERE id_estado= $1', [estadoId]);
     return user;
   } catch (error) {
     throw error;

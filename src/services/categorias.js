@@ -18,27 +18,27 @@ exports.addCategorias = async (nombre) => {
   }
 };
 
-exports.editCategorias = async (nombre, userId) => {
+exports.editCategorias = async (nombre, categoriaId) => {
   try {
-    const user = await pool.query('UPDATE categoria SET nombre = $1 WHERE id_categoria = $2', [nombre, userId]);
+    const user = await pool.query('UPDATE categoria SET nombre = $1 WHERE id_categoria = $2', [nombre, categoriaId]);
     return user;
   } catch (error) {
     throw error;
   }
 };
 
-exports.deleteCategorias  = async (userId) => {
+exports.deleteCategorias  = async (categoriaId) => {
   try {
-    const user = await pool.query(`DELETE FROM categoria WHERE id_categoria = $1`, [userId]);
+    const user = await pool.query(`DELETE FROM categoria WHERE id_categoria = $1`, [categoriaId]);
     return user;
   } catch (error) {
     throw error;
   }
 };
 
-exports.lookCategorias  = async (userId) => {
+exports.lookCategorias  = async (categoriaId) => {
   try {
-    const user = await pool.query('SELECT * FROM categoria WHERE id_categoria= $1', [userId]);
+    const user = await pool.query('SELECT * FROM categoria WHERE id_categoria= $1', [categoriaId]);
     return user;
   } catch (error) {
     throw error;

@@ -29,10 +29,10 @@ class Est_RetiroController {
         const client = await pool.connect();
         try {
             const { nombre } = req.body;
-            const { diaId } = req.params;
-            const parsedDiaId = parseInt(diaId);
+            const { est_retiroId } = req.params;
+            const parsedEst_retiroId = parseInt(est_retiroId);
 
-            const newDia = await est_RetiroService.editEst_Retiro(nombre, parsedDiaId);
+            const newDia = await est_RetiroService.editEst_Retiro(nombre, parsedEst_retiroId);
             res.status(200).json(newDia.rows);
             
         } catch (error) {
@@ -46,9 +46,9 @@ class Est_RetiroController {
     async buscarEst_Retiro(req, res) {
         try {
             
-            const diaId = req.body['id_estadoretiro']; 
-            const parsedDiaId = parseInt(diaId);
-            const newUser = await est_RetiroService.lookEst_Retiro(parsedDiaId);
+            const est_retiroId = req.body['id_estadoretiro']; 
+            const parsedEst_retiroId = parseInt(est_retiroId);
+            const newUser = await est_RetiroService.lookEst_Retiro(parsedEst_retiroId);
             res.status(200).json(newUser.rows);
 
         } catch (error) {
@@ -59,9 +59,9 @@ class Est_RetiroController {
     
     async eliminarEst_Retiro(req, res) {
         try {
-            const diaId = req.params.diaId;
-            const parsedDiaId = parseInt(diaId);
-            const newUser = await est_RetiroService.deleteEst_Retiro(parsedDiaId);
+            const est_retiroId = req.params.est_retiroId;
+            const parsedEst_retiroId = parseInt(est_retiroId);
+            const newUser = await est_RetiroService.deleteEst_Retiro(parsedEst_retiroId);
             res.status(200).json(newUser.rows);
         } catch (error) {
             console.error('Error al eliminar dia:', error);

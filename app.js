@@ -7,6 +7,7 @@ const paisRoutes = require('./src/routes/pais');
 const estadosRoutes = require('./src/routes/estados');
 const categoriasRoutes = require('./src/routes/categorias');
 const est_retiroRoutes = require('./src/routes/estados_retiros');
+const rolesRoutes = require('./src/routes/roles');
 
 // Inicialización
 const app = express();
@@ -38,6 +39,7 @@ app.use('/', paisRoutes);
 app.use('/', estadosRoutes);
 app.use('/', categoriasRoutes);
 app.use('/', est_retiroRoutes);
+app.use('/', rolesRoutes);
 
 
 

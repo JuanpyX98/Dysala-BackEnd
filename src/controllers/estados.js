@@ -29,10 +29,10 @@ class EstadosController {
         const client = await pool.connect();
         try {
             const { nombre } = req.body;
-            const { diaId } = req.params;
-            const parsedDiaId = parseInt(diaId);
+            const { estadoId } = req.params;
+            const parsedEstadoId = parseInt(estadoId);
 
-            const newDia = await estadoService.editEstados(nombre, parsedDiaId);
+            const newDia = await estadoService.editEstados(nombre, parsedEstadoId);
             res.status(200).json(newDia.rows);
             
         } catch (error) {
@@ -46,9 +46,9 @@ class EstadosController {
     async buscarEstado(req, res) {
         try {
             
-            const diaId = req.body['id_estado']; 
-            const parsedDiaId = parseInt(diaId);
-            const newUser = await estadoService.lookEstados(parsedDiaId);
+            const estadoId = req.body['id_estado']; 
+            const parsedEstadoId = parseInt(estadoId);
+            const newUser = await estadoService.lookEstados(parsedEstadoId);
             res.status(200).json(newUser.rows);
 
         } catch (error) {
@@ -59,9 +59,9 @@ class EstadosController {
     
     async eliminarEstados(req, res) {
         try {
-            const diaId = req.params.diaId;
-            const parsedDiaId = parseInt(diaId);
-            const newUser = await estadoService.deleteEstados(parsedDiaId);
+            const estadoId = req.params.estadoId;
+            const parsedEstadoId = parseInt(estadoId);
+            const newUser = await estadoService.deleteEstados(parsedEstadoId);
             res.status(200).json(newUser.rows);
         } catch (error) {
             console.error('Error al eliminar Estado:', error);

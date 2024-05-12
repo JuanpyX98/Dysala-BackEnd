@@ -29,10 +29,10 @@ class CategoriasController {
         const client = await pool.connect();
         try {
             const { nombre } = req.body;
-            const { diaId } = req.params;
-            const parsedDiaId = parseInt(diaId);
+            const { categoriaId } = req.params;
+            const parsedCategoriaId = parseInt(categoriaId);
 
-            const newDia = await categoriaService.editCategorias(nombre, parsedDiaId);
+            const newDia = await categoriaService.editCategorias(nombre, parsedCategoriaId);
             res.status(200).json(newDia.rows);
             
         } catch (error) {
@@ -46,9 +46,9 @@ class CategoriasController {
     async buscarCategorias(req, res) {
         try {
             
-            const diaId = req.body['id_categoria']; 
-            const parsedDiaId = parseInt(diaId);
-            const newUser = await categoriaService.lookCategorias(parsedDiaId);
+            const categoriaId = req.body['id_categoria']; 
+            const parsedCategoriaId = parseInt(categoriaId);
+            const newUser = await categoriaService.lookCategorias(parsedCategoriaId);
             res.status(200).json(newUser.rows);
 
         } catch (error) {
@@ -59,9 +59,9 @@ class CategoriasController {
     
     async eliminarCategorias(req, res) {
         try {
-            const diaId = req.params.diaId;
-            const parsedDiaId = parseInt(diaId);
-            const newUser = await categoriaService.deleteCategorias(parsedDiaId);
+            const categoriaId = req.params.categoriaId;
+            const parsedCategoriaId = parseInt(categoriaId);
+            const newUser = await categoriaService.deleteCategorias(parsedCategoriaId);
             res.status(200).json(newUser.rows);
         } catch (error) {
             console.error('Error al eliminar Categorias:', error);
