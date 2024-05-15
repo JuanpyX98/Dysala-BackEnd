@@ -8,6 +8,10 @@ const estadosRoutes = require('./src/routes/estados');
 const categoriasRoutes = require('./src/routes/categorias');
 const est_retiroRoutes = require('./src/routes/estados_retiros');
 const rolesRoutes = require('./src/routes/roles');
+const tFacturasRoutes = require('./src/routes/tipos_facturas');
+const adminRoutes = require('./src/routes/administradores');
+const adminLocalRoutes = require('./src/routes/administradores_locales');
+const adminDiasHorasRoutes = require('./src/routes/dias_horas');
 
 // Inicialización
 const app = express();
@@ -40,6 +44,10 @@ app.use('/', estadosRoutes);
 app.use('/', categoriasRoutes);
 app.use('/', est_retiroRoutes);
 app.use('/', rolesRoutes);
+app.use('/', tFacturasRoutes);
+app.use('/', adminRoutes);
+app.use('/', adminLocalRoutes);
+app.use('/', adminDiasHorasRoutes);
 
 
 

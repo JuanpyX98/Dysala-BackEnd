@@ -12,7 +12,7 @@ router.get('/tFactura', t_FacturaController.obtenerTpFacturas);
 
 router.post('/tFacturaBuscar', t_FacturaController.buscarTpFacturas)
 
-router.post('/tFacturaAgregar', t_FacturaController.agregarCTpFacturas);
+router.post('/tFacturaAgregar', t_FacturaController.agregarTpFacturas);
 
 router.put('/tFacturaEditar/:tFacturaId', t_FacturaController.editarTpFacturas);
 
