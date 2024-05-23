@@ -32,7 +32,7 @@ class DiasHorasController {
             const { diaHorasId } = req.params;
             const parsedDiaHorasId = parseInt(diaHorasId);
 
-            const newDia = await diaService.editDias(id_dia, hs_apertura, hs_cierre, parsedDiaHorasId);
+            const newDia = await diaService.editDiasHoras(id_dia, hs_apertura, hs_cierre, parsedDiaHorasId);
             res.status(200).json(newDia.rows);
             
         } catch (error) {
@@ -48,7 +48,7 @@ class DiasHorasController {
             
             const diaHorasId = req.body['id_dh']; 
             const parsedDiaHorasId = parseInt(diaHorasId);
-            const newUser = await diaHorasService.lookDias(parsedDiaHorasId);
+            const newUser = await diaHorasService.lookDiasHoras(parsedDiaHorasId);
             res.status(200).json(newUser.rows);
 
         } catch (error) {
@@ -61,7 +61,7 @@ class DiasHorasController {
         try {
             const diaHorasId = req.params.diaHorasId;
             const parsedDiaHorasId = parseInt(diaHorasId);
-            const newUser = await diaHorasService.deleteDias(parsedDiaHorasId);
+            const newUser = await diaHorasService.deleteDiasHoras(parsedDiaHorasId);
             res.status(200).json(newUser.rows);
         } catch (error) {
             console.error('Error al eliminar diaHoras:', error);

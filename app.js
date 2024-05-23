@@ -4,6 +4,7 @@ const path = require("path");
 const usuariosRoutes = require('./src/routes/usuarios');
 const diasRoutes = require('./src/routes/dias');
 const paisRoutes = require('./src/routes/pais');
+const paisProvinciaRoutes = require('./src/routes/pais_provincias');
 const estadosRoutes = require('./src/routes/estados');
 const categoriasRoutes = require('./src/routes/categorias');
 const est_retiroRoutes = require('./src/routes/estados_retiros');
@@ -12,6 +13,18 @@ const tFacturasRoutes = require('./src/routes/tipos_facturas');
 const adminRoutes = require('./src/routes/administradores');
 const adminLocalRoutes = require('./src/routes/administradores_locales');
 const adminDiasHorasRoutes = require('./src/routes/dias_horas');
+const adminHorariosRoutes = require('./src/routes/horarios_restaurantes');
+const adminComidasRoutes = require('./src/routes/restaurantes_comidas');
+const adminPedidosLlevarRoutes = require('./src/routes/pedidos_llevar');
+const adminPedidosLocalRoutes = require('./src/routes/pedidos_restaurantes');
+const adminMetodosPagosRoutes = require('./src/routes/metodos_pagos');
+const adminProvinciasRoutes = require('./src/routes/provincias');
+const adminProvinciasDepartRoutes = require('./src/routes/provincias_departamentos');
+const adminReservasRoutes = require('./src/routes/reservas');
+const adminReservasLlevarRoutes = require('./src/routes/reservas_llevar');
+const adminReservasMesasRoutes = require('./src/routes/reservas_mesas');
+const adminReseñasRoutes = require('./src/routes/reseñas');
+const adminSeñasRoutes = require('./src/routes/restaurantes_señas');
 
 // Inicialización
 const app = express();
@@ -48,6 +61,19 @@ app.use('/', tFacturasRoutes);
 app.use('/', adminRoutes);
 app.use('/', adminLocalRoutes);
 app.use('/', adminDiasHorasRoutes);
+app.use('/', adminHorariosRoutes);
+app.use('/', adminComidasRoutes);
+app.use('/', adminPedidosLlevarRoutes);
+app.use('/', adminPedidosLocalRoutes);
+app.use('/', adminMetodosPagosRoutes);
+app.use('/', paisProvinciaRoutes);
+app.use('/', adminProvinciasRoutes);
+app.use('/', adminProvinciasDepartRoutes);
+app.use('/', adminReservasRoutes);
+app.use('/', adminReservasLlevarRoutes);
+app.use('/', adminReservasMesasRoutes);
+app.use('/', adminReseñasRoutes);
+app.use('/', adminSeñasRoutes);
 
 
 
