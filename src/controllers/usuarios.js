@@ -17,8 +17,8 @@ class UsuariosController {
 
     async agregarUsuarios(req, res) {
         try {
-            const { nombre, apellido } = req.body;
-            const newUser = await userService.addUsers(nombre, apellido);
+            const { id_database, dni, contraseña, nombre, apellido, correo, num_tel, id_provincia, id_pais, id_departemento, lat, log, id_estado } = req.body;
+            const newUser = await userService.addUsers(id_database, dni, contraseña, nombre, apellido, correo, num_tel, id_provincia, id_pais, id_departemento, lat, log, id_estado);
             res.status(200).json(newUser.rows);
         } catch (error) {
             console.error('Error al agregar usuario:', error);
@@ -29,11 +29,11 @@ class UsuariosController {
     async editarUsuarios(req, res) {
         const client = await pool.connect();
         try {
-            const { nombre, apellido } = req.body;
+            const { id_database, dni, contraseña, nombre, apellido, correo, num_tel, id_provincia, id_pais, id_departemento, lat, log, id_estado } = req.body;
             const { userId } = req.params;
             const parsedUserId = parseInt(userId);
 
-            const newUser = await userService.editUsers(nombre, apellido, parsedUserId);
+            const newUser = await userService.editUsers(id_database, dni, contraseña, nombre, apellido, correo, num_tel, id_provincia, id_pais, id_departemento, lat, log, id_estado, parsedUserId);
             res.status(200).json(newUser.rows);
             
         } catch (error) {
